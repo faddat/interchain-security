@@ -57,6 +57,7 @@ func (tr TestRun) sendTokens(
 	}
 }
 
+// StartChainAction defines a chain to be started in a test run
 type StartChainAction struct {
 	chain      chainID
 	validators []StartChainValidator
@@ -65,6 +66,7 @@ type StartChainAction struct {
 	skipGentx      bool
 }
 
+// StartChainValidator defines a validator to be started in a chain
 type StartChainValidator struct {
 	id         validatorID
 	allocation uint
@@ -108,6 +110,7 @@ func (tr TestRun) startChain(
 		})
 	}
 
+	// Marshal validators to json
 	vals, err := json.Marshal(validators)
 	if err != nil {
 		log.Fatal(err)
@@ -164,6 +167,7 @@ func (tr TestRun) startChain(
 	}, verbose)
 }
 
+// submitTextProposalAction defines a text proposal to be submitted in a chain
 type submitTextProposalAction struct {
 	chain       chainID
 	from        validatorID
@@ -173,6 +177,7 @@ type submitTextProposalAction struct {
 	description string
 }
 
+// submitTextProposal submits a text proposal in a chain
 func (tr TestRun) submitTextProposal(
 	action submitTextProposalAction,
 	verbose bool,
